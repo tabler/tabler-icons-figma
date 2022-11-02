@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@create-figma-plugin/ui": "^2.1.4",
+    "@create-figma-plugin/utilities": "^2.1.4",
+    "preact": "^10.11.2"
+  },
+  "devDependencies": {
+    "@create-figma-plugin/build": "^2.1.4",
+    "@create-figma-plugin/tsconfig": "^2.1.4",
+    "@figma/plugin-typings": "1.54.0",
+    "typescript": "^4"
+  },
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "watch": "build-figma-plugin --typecheck --watch"
+  },
+  "figma-plugin": {
+    "editorType": [
+      "figma"
+    ],
+    "id": "hello-world",
+    "name": "Tabler Icons",
+    "main": "src/main.ts",
+    "ui": "src/ui.tsx"
+  }
+}
