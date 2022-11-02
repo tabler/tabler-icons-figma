@@ -14,34 +14,18 @@ import {
 import { emit } from '@create-figma-plugin/utilities'
 import { h, JSX } from 'preact'
 import { useCallback, useState } from 'preact/hooks'
-
-import { CloseHandler, CreateRectanglesHandler } from './types'
+import useSearch from './use-search'
 
 const version = '1.109.0'
 
 function Plugin() {
-	const [count, setCount] = useState<number | null>(5)
-	const [countString, setCountString] = useState('5')
-
-	const handleCreateRectanglesButtonClick = useCallback(
-		function () {
-			if (count !== null) {
-				emit<CreateRectanglesHandler>('CREATE_RECTANGLES', count)
-			}
-		},
-		[count]
-	)
-	const handleCloseButtonClick = useCallback(function () {
-		emit<CloseHandler>('CLOSE')
-	}, [])
-
 	const [value, setValue] = useState<string>('')
 
 	function handleInput(event: JSX.TargetedEvent<HTMLInputElement>) {
-		const newValue = event.currentTarget.value
-		console.log(newValue)
-		setValue(newValue)
+		setValue(event.currentTarget.value)
 	}
+
+	const results = useSearch(value)
 
 	return (
 		<div>
@@ -78,9 +62,9 @@ function Plugin() {
 						gridGap: 'var(--space-extra-small)',
 					}}
 				>
-					{[...Array(1000)].map((x, i) =>
-						<div style={{ background: '#fafafa', textAlign: 'center' }}>{i}</div>
-					)}
+					{results.map(icon => (
+						<div style={{ background: '#fafafa', textAlign: 'center' }}>{icon.name}</div>
+					))}
 				</div>
 				<VerticalSpace space="medium" />
 				<Text>
