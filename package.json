@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",
-    "watch": "build-figma-plugin --typecheck --watch"
+    "watch": "build-figma-plugin --typecheck --watch",
+    "import-icons": "node import-icons"
   },
   "figma-plugin": {
     "editorType": [

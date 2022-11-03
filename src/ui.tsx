@@ -1,22 +1,54 @@
+import '!./ui.css'
+
 import {
-	Button,
-	Columns,
 	Container,
 	Divider,
 	Bold,
 	render,
 	Text,
 	Muted,
-	TextboxNumeric,
 	VerticalSpace,
 	SearchTextbox,
 } from '@create-figma-plugin/ui'
-import { emit } from '@create-figma-plugin/utilities'
+import {
+	emit,
+} from '@create-figma-plugin/utilities'
+
 import { h, JSX } from 'preact'
-import { useCallback, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
+import { version, icons } from './icons.json'
 import useSearch from './use-search'
 
-const version = '1.109.0'
+type Icon = {
+	name: string,
+	svg: string,
+	category: string,
+	tags: string[]
+}
+
+function IconButton({
+	icon
+}: {
+	icon: Icon
+}) {
+	const handleClick = (name: string, svg: string) => {
+		emit('SUBMIT', {
+			name,
+			svg
+		})
+	}
+
+	return (
+		<button
+			key={icon.name}
+			aria-label={icon.name}
+			onClick={() => handleClick(icon.name, icon.svg)}
+			class="icon-button"
+			dangerouslySetInnerHTML={{__html: icon.svg}}
+		>
+		</button>
+	)
+}
 
 function Plugin() {
 	const [value, setValue] = useState<string>('')
@@ -29,41 +61,29 @@ function Plugin() {
 
 	return (
 		<div>
-			<div
-				style={{
-					position: 'sticky',
-					top: 0,
-					background: 'var(--figma-color-bg)'
-				}}
-			>
+			<div class="search">
 				<SearchTextbox
 					onInput={handleInput}
-					placeholder="Search 2900 icons"
+					placeholder={`Search ${icons.length} icons`}
 					value={value}
 				/>
 				<Divider />
 			</div>
 			<Container space="small">
 				<VerticalSpace space="small" />
-				{ value && (
+				{value && (
 					<div>
 						<Text>
-							<Bold>Search results for &quot;{ value }&quot;:</Bold>
+							<Bold>Search results for &quot;{value}&quot;:</Bold>
 						</Text>
 						<VerticalSpace space="small" />
 					</div>
 				)}
 			</Container>
 			<Container space="small">
-				<div
-					style={{
-						display: 'grid',
-						gridTemplateColumns: 'repeat(6, 1fr)',
-						gridGap: 'var(--space-extra-small)',
-					}}
-				>
+				<div class="grid">
 					{results.map(icon => (
-						<div style={{ background: '#fafafa', textAlign: 'center' }}>{icon.name}</div>
+						<IconButton icon={icon} />
 					))}
 				</div>
 				<VerticalSpace space="medium" />

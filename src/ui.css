@@ -1,0 +1,35 @@
+.search {
+	position: sticky;
+	top: 0;
+	background: var(--figma-color-bg);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: var(--space-extra-small);
+}
+
+.icon-button {
+	padding: 4px;
+	color: #354052;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	appearance: none;
+	outline: 0;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	aspect-ratio: 1;
+}
+
+.icon-button:hover {
+	border-color: var(--figma-color-border);
+}
+
+.icon-button:focus,
+.icon-button:active {
+	border: 1px solid var(--figma-color-border-selected);
+	outline: 1px solid var(--figma-color-border-selected);
+}

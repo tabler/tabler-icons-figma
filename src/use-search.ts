@@ -1,33 +1,7 @@
 import Fuse from 'fuse.js'
 import { useState, useEffect } from 'preact/hooks'
 
-type Icon = {
-	name: string,
-	tags: string[]
-}
-
-type Icons = Icon[]
-
-const icons: Icons = [
-	{
-		name: "activity",
-		tags: ["pulse", "health", "action", "motion"]
-	},
-	{
-		name: "airplay",
-		tags: ["stream", "cast", "mirroring"]
-	},
-	{
-		name: "alert-circle",
-		tags: ["warning", "alert", "danger"]
-	},
-	{
-		name: "alert-octagon",
-		tags: ["warning", "alert", "danger"]
-	}
-]
-
-console.log('icons', Object.values(icons));
+import { icons } from './icons.json'
 
 function useSearch(query: string) {
 	const values = Object.values(icons)
