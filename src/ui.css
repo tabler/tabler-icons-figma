@@ -1,7 +1,18 @@
+a {
+	color: var(--figma-color-text-brand);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 .search {
 	position: sticky;
 	top: 0;
 	background: var(--figma-color-bg);
+	z-index: 1;
 }
 
 .grid {
@@ -12,7 +23,7 @@
 
 .icon-button {
 	padding: 4px;
-	color: #354052;
+	color: var(--figma-color-text);
 	background: transparent;
 	border: 1px solid transparent;
 	border-radius: 2px;

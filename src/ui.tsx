@@ -9,6 +9,9 @@ import {
 	Muted,
 	VerticalSpace,
 	SearchTextbox,
+	DropdownOption,
+	Dropdown,
+	Columns
 } from '@create-figma-plugin/ui'
 import {
 	emit,
@@ -27,10 +30,15 @@ type Icon = {
 }
 
 function IconButton({
-	icon
+	icon,
+	stroke
 }: {
-	icon: Icon
+	icon: Icon,
+	stroke: string
 }) {
+	const svg = icon.svg
+		.replace('stroke-width="2"', `stroke-width="${stroke}"`)
+
 	const handleClick = (name: string, svg: string) => {
 		emit('SUBMIT', {
 			name,
@@ -42,22 +50,59 @@ function IconButton({
 		<button
 			key={icon.name}
 			aria-label={icon.name}
-			onClick={() => handleClick(icon.name, icon.svg)}
+			onClick={() => handleClick(icon.name, svg)}
 			class="icon-button"
-			dangerouslySetInnerHTML={{__html: icon.svg}}
+			dangerouslySetInnerHTML={{ __html: svg }}
 		>
 		</button>
 	)
 }
 
 function Plugin() {
-	const [value, setValue] = useState<string>('')
+	const [search, setSearch] = useState<string>('')
+	const [category, setCategory] = useState<string>('')
+	const [stroke, setStroke] = useState<string>('2')
+
+	const results = useSearch(search, category)
+	const limit = 102
 
 	function handleInput(event: JSX.TargetedEvent<HTMLInputElement>) {
-		setValue(event.currentTarget.value)
+		setSearch(event.currentTarget.value)
 	}
 
-	const results = useSearch(value)
+	function handleCategoryChange(event: JSX.TargetedEvent<HTMLInputElement>) {
+		setCategory(event.currentTarget.value)
+	}
+
+	function handleStrokeChange(event: JSX.TargetedEvent<HTMLInputElement>) {
+		setStroke(event.currentTarget.value)
+	}
+
+	let c: string[] = []
+	icons.forEach((i) => {
+		if(i.category != '' && c.indexOf(i.category) === -1) {
+			c.push(i.category)
+		}
+	})
+
+	c.sort()
+
+	const categories: Array<DropdownOption> = [
+		{ value: '', text: 'All categories' },
+	]
+
+	c.forEach((i) => {
+		categories.push({
+			value: i,
+			text: i
+		})
+	})
+
+	const strokes: Array<DropdownOption> = [
+		{ value: '1', text: 'Thin' },
+		{ value: '1.5', text: 'Light' },
+		{ value: '2', text: 'Normal' },
+	]
 
 	return (
 		<div>
@@ -65,16 +110,30 @@ function Plugin() {
 				<SearchTextbox
 					onInput={handleInput}
 					placeholder={`Search ${icons.length} icons`}
-					value={value}
+					value={search}
 				/>
+				<Divider />
+				<Container space="extraSmall">
+					<VerticalSpace space="extraSmall" />
+					<Columns space="small">
+						<Dropdown onChange={handleCategoryChange} options={categories} value={category} />
+						<Dropdown onChange={handleStrokeChange} options={strokes} value={stroke} />
+					</Columns>
+					<VerticalSpace space="extraSmall" />
+				</Container>
 				<Divider />
 			</div>
 			<Container space="small">
 				<VerticalSpace space="small" />
-				{value && (
+				{(search || category != '') && (
 					<div>
 						<Text>
-							<Bold>Search results for &quot;{value}&quot;:</Bold>
+							<Bold>
+								Icons
+								{search && ` matched "${search}"`}
+								{category != '' && ` in category "${category}"`}
+								{":"}
+							</Bold>
 						</Text>
 						<VerticalSpace space="small" />
 					</div>
@@ -82,11 +141,28 @@ function Plugin() {
 			</Container>
 			<Container space="small">
 				<div class="grid">
-					{results.map(icon => (
-						<IconButton icon={icon} />
+					{results.slice(0, limit).map(icon => (
+						<IconButton icon={icon} stroke={stroke}/>
 					))}
 				</div>
-				<VerticalSpace space="medium" />
+				{results.length === 0 && (
+					<div>
+						<VerticalSpace space="medium" />
+						<Text align="center">
+							<Muted>Sorry, we don't have any icon to match your query.</Muted>
+						</Text>
+						<VerticalSpace space="large" />
+					</div>
+				)}
+				{results.length - limit > 0 && (
+					<div>
+						<VerticalSpace space="medium" />
+						<Text align="center">
+						<Muted>&hellip;and {results.length - limit} more. Use the search to find more icons.</Muted>
+						</Text>
+					</div>
+				)}
+				<VerticalSpace space="extraLarge" />
 				<Text>
 					<Muted>Tabler Icons v{version}</Muted>
 				</Text>
