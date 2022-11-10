@@ -5,7 +5,11 @@
 const fs = require('node:fs')
 
 const prepareSvgFile = (svg) => {
-	return svg.replace(/\n/g, '').replace(/>\s+</g, '><');
+	return svg
+			.replace(/\n/g, '')
+			.replace(/>\s+</g, '><')
+			.replace(/<path stroke="none" d="M0 0h24v24H0z" fill="none"\s?\/>/, '')
+			;
 }
 
 const iconsPkg = require('./node_modules/@tabler/icons/package.json')

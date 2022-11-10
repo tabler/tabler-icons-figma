@@ -7,13 +7,11 @@ export default function () {
 	})
 
 	function handleSubmit(data: { name: string, svg: string }) {
-		console.log(data)
-
 		const icon = figma.createNodeFromSvg(data.svg)
 
 		icon.name = `tabler-icon-${data.name}`
-		icon.x = figma.viewport.center.x
-		icon.y = figma.viewport.center.y
+		icon.x = Math.round(figma.viewport.center.x)
+		icon.y = Math.round(figma.viewport.center.y)
 
 		figma.currentPage.selection = [icon]
 	}
