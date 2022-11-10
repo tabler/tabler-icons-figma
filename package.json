@@ -8,14 +8,14 @@
     "@create-figma-plugin/build": "^2.1.4",
     "@create-figma-plugin/tsconfig": "^2.1.4",
     "@figma/plugin-typings": "1.54.0",
-    "@tabler/icons": "^1.110.0",
+    "@tabler/icons": "^1.111.0",
     "fuse.js": "^6.6.2",
     "typescript": "^4"
   },
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",
     "watch": "build-figma-plugin --typecheck --watch",
-    "import-icons": "ncu -u @tabler/icons && npm install && node import-icons"
+    "icons": "ncu -u @tabler/icons && npm install && node import-icons && npm run build && git add . && git commit -am \"update icons to v`npm info @tabler/icons version`\" && git push"
   },
   "figma-plugin": {
     "editorType": [
