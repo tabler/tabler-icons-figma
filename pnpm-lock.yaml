@@ -6,7 +6,7 @@ specifiers:
   '@create-figma-plugin/ui': ^2.1.5
   '@create-figma-plugin/utilities': ^2.1.5
   '@figma/plugin-typings': 1.55.1
-  '@tabler/icons': ^2.6.0
+  '@tabler/icons': ^2.7.0
   fuse.js: ^6.6.2
   preact: ^10.11.3
   typescript: ^4
@@ -20,7 +20,7 @@ devDependencies:
   '@create-figma-plugin/build': 2.2.0_jpg4vimvashjwtnqroes7ura5y
   '@create-figma-plugin/tsconfig': 2.2.0
   '@figma/plugin-typings': 1.55.1
-  '@tabler/icons': 2.6.0
+  '@tabler/icons': 2.7.0
   fuse.js: 6.6.2
   typescript: 4.9.5
 
@@ -325,8 +325,8 @@ packages:
       escape-string-regexp: 5.0.0
     dev: true
 
-  /@tabler/icons/2.6.0:
-    resolution: {integrity: sha512-rflJyQSsu2iV6QgrA7ZdGaikSTdIVpXlem0jBIcx18OKg0ZJmLojmrhNo7DpOW7bCT4Hr2r6jcpq8uSYrinqZw==}
+  /@tabler/icons/2.7.0:
+    resolution: {integrity: sha512-mSjUKhwN5fJHI9yITqFn9GXGnsJ4gBAyQDWyP4Ev5fk6hD78G7u6cHEF1KARr5FOOdiIKSZWCzNzUzyLhiNPrg==}
     dev: true
 
   /@trysound/sax/0.2.0:
