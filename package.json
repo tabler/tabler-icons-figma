@@ -8,7 +8,7 @@
     "@create-figma-plugin/build": "^2.1.5",
     "@create-figma-plugin/tsconfig": "^2.1.5",
     "@figma/plugin-typings": "1.55.1",
-    "@tabler/icons": "^2.14.0",
+    "@tabler/icons": "^2.16.0",
     "fuse.js": "^6.6.2",
     "typescript": "^4"
   },
