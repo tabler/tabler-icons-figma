@@ -1,16 +1,16 @@
 {
   "dependencies": {
-    "@create-figma-plugin/ui": "^2.1.5",
-    "@create-figma-plugin/utilities": "^2.1.5",
-    "preact": "^10.11.3"
+    "@create-figma-plugin/ui": "^2.4.0",
+    "@create-figma-plugin/utilities": "^2.4.0",
+    "preact": "^10.14.1"
   },
   "devDependencies": {
-    "@create-figma-plugin/build": "^2.1.5",
-    "@create-figma-plugin/tsconfig": "^2.1.5",
-    "@figma/plugin-typings": "1.55.1",
+    "@create-figma-plugin/build": "^2.4.0",
+    "@create-figma-plugin/tsconfig": "^2.4.0",
+    "@figma/plugin-typings": "1.64.0",
     "@tabler/icons": "^2.19.0",
     "fuse.js": "^6.6.2",
-    "typescript": "^4"
+    "typescript": "^5"
   },
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",

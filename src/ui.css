@@ -15,6 +15,13 @@ a:hover {
 	z-index: 1;
 }
 
+.footer {
+	position: sticky;
+	bottom: 0;
+	background: var(--figma-color-bg);
+	z-index: 1;
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);

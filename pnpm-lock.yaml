@@ -1,41 +1,41 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@create-figma-plugin/build': ^2.1.5
-  '@create-figma-plugin/tsconfig': ^2.1.5
-  '@create-figma-plugin/ui': ^2.1.5
-  '@create-figma-plugin/utilities': ^2.1.5
-  '@figma/plugin-typings': 1.55.1
+  '@create-figma-plugin/build': ^2.4.0
+  '@create-figma-plugin/tsconfig': ^2.4.0
+  '@create-figma-plugin/ui': ^2.4.0
+  '@create-figma-plugin/utilities': ^2.4.0
+  '@figma/plugin-typings': 1.64.0
   '@tabler/icons': ^2.19.0
   fuse.js: ^6.6.2
-  preact: ^10.11.3
-  typescript: ^4
+  preact: ^10.14.1
+  typescript: ^5
 
 dependencies:
-  '@create-figma-plugin/ui': 2.2.0_preact@10.13.0
-  '@create-figma-plugin/utilities': 2.2.0
-  preact: 10.13.0
+  '@create-figma-plugin/ui': 2.4.0_preact@10.14.1
+  '@create-figma-plugin/utilities': 2.4.0
+  preact: 10.14.1
 
 devDependencies:
-  '@create-figma-plugin/build': 2.2.0_jpg4vimvashjwtnqroes7ura5y
-  '@create-figma-plugin/tsconfig': 2.2.0
-  '@figma/plugin-typings': 1.55.1
+  '@create-figma-plugin/build': 2.4.0_v2cixaatvilzcqmenenkapxwje
+  '@create-figma-plugin/tsconfig': 2.4.0
+  '@figma/plugin-typings': 1.64.0
   '@tabler/icons': 2.19.0
   fuse.js: 6.6.2
-  typescript: 4.9.5
+  typescript: 5.0.4
 
 packages:
 
-  /@create-figma-plugin/build/2.2.0_jpg4vimvashjwtnqroes7ura5y:
-    resolution: {integrity: sha512-tM0MYnogjjUP13ZibfTu/05k08x9StOn+SAAfEXKi3Ccz2rU2wQGbw43wsHqbyXXw5ItwtnWd8N4HKpWuF4sKA==}
+  /@create-figma-plugin/build/2.4.0_v2cixaatvilzcqmenenkapxwje:
+    resolution: {integrity: sha512-/JHGP5lcdrIkZtqPUj8Qc/XXNpI1sggfcL4MFgKBqKrDYE+zzFFN9YdLFqeBfapMymH1nbuxzFgvXku8oV6qgg==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
       '@figma/plugin-typings': '>=1'
       typescript: '>=4'
     dependencies:
-      '@create-figma-plugin/common': 2.2.0
-      '@figma/plugin-typings': 1.55.1
+      '@create-figma-plugin/common': 2.4.0
+      '@figma/plugin-typings': 1.64.0
       chokidar: 3.5.3
       cssnano: 5.1.15_postcss@8.4.21
       esbuild: 0.16.17
@@ -52,11 +52,11 @@ packages:
       temp-write: 5.0.0
       tempy: 3.0.0
       typed-css-modules: 0.7.2
-      typescript: 4.9.5
+      typescript: 5.0.4
     dev: true
 
-  /@create-figma-plugin/common/2.2.0:
-    resolution: {integrity: sha512-annFsfeu1kpMnzEG2Q52VxGN3OlWV52lq3eeQ8PvlwyfQWFMP5BoDmB2s3odZ0skhkMUC2VAHsXaFjlSWheCug==}
+  /@create-figma-plugin/common/2.4.0:
+    resolution: {integrity: sha512-aCVNyoPbZw/5IjG2AjrRwihPhezoj9NaWrqqKUL1LMuRBDzmok3Q6ZSYk78JZGLvxiddji7aFqmNiBdOVED2Cg==}
     engines: {node: '>=18'}
     dependencies:
       '@sindresorhus/slugify': 2.1.1
@@ -64,22 +64,22 @@ packages:
       kleur: 4.1.5
     dev: true
 
-  /@create-figma-plugin/tsconfig/2.2.0:
-    resolution: {integrity: sha512-fFkOCpSBrWxhmLGmgb9jo7nDz2WXvsLVSO05J2XAyjzFwNxOKwkIa+MLMeuQkfeEtAr7vBybCRVXY6w+3xPfFw==}
+  /@create-figma-plugin/tsconfig/2.4.0:
+    resolution: {integrity: sha512-tB//AK1J8iMAE6/A+b88AwfPdaWy0sf/xFgg5D13ZBXF9U8aQ3GmdjnkuANRWvGP4xq540EVkr1EFjpOHXMVAg==}
     dev: true
 
-  /@create-figma-plugin/ui/2.2.0_preact@10.13.0:
-    resolution: {integrity: sha512-ceDgE1K8nqHc391REHv4+wB0n1vSXzkxnqSPt+Qu9xnPBtkajQU/bExAuecmhUBEGTDqURJZHILzbBx61+/AGQ==}
+  /@create-figma-plugin/ui/2.4.0_preact@10.14.1:
+    resolution: {integrity: sha512-D/oUqfjLpxA3tEFM+dqOl/epZcwAgnOQALdD4rG5Ngal1qXiE//u/RNp+9dhHWS0XZ4uKV6NaP5lhEnfoCRGYQ==}
     engines: {node: '>=18'}
     peerDependencies:
       preact: '>=10'
     dependencies:
-      '@create-figma-plugin/utilities': 2.2.0
-      preact: 10.13.0
+      '@create-figma-plugin/utilities': 2.4.0
+      preact: 10.14.1
     dev: false
 
-  /@create-figma-plugin/utilities/2.2.0:
-    resolution: {integrity: sha512-EO0BglXOKpZ5vQ6obpzAPe0ZXWKmbNfVMkmeOItihGJ7YwShpRD6HmlyWzSe3mJnuRb33xeC8Jugh1GKbQHolg==}
+  /@create-figma-plugin/utilities/2.4.0:
+    resolution: {integrity: sha512-n5DdwvR0kr/vWNWWgYSfMAEOeZZmAIddJhSmPFR0Gy/U82rFkqqXV/SPx8GwpOR2eDo4phu59tzyrGqCy1bU/w==}
     engines: {node: '>=18'}
     dependencies:
       hex-rgb: 5.0.0
@@ -285,8 +285,8 @@ packages:
     dev: true
     optional: true
 
-  /@figma/plugin-typings/1.55.1:
-    resolution: {integrity: sha512-gNyAFMA83oNJ8X4xrMjs49CCPwfRRdNepvZUx4gxS5/GBnZqV+rhEkM9crgJrynrE1VgxILLjQIPgUxxSNBWJQ==}
+  /@figma/plugin-typings/1.64.0:
+    resolution: {integrity: sha512-oQUqYh790cXBP3x9Ejq0Wyp/AJZzYfjlB3Od8xuljL/lJFUsP+z4BSshB6nipYmQb6iih1+9d1PhgE9qxzuQQg==}
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -1544,8 +1544,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /preact/10.13.0:
-    resolution: {integrity: sha512-ERdIdUpR6doqdaSIh80hvzebHB7O6JxycOhyzAeLEchqOq/4yueslQbfnPwXaNhAYacFTyCclhwkEbOumT0tHw==}
+  /preact/10.14.1:
+    resolution: {integrity: sha512-4XDSnUisk3YFBb3p9WeKeH1mKoxdFUsaXcvxs9wlpYR1wax/TWJVqhwmIWbByX0h7jMEJH6Zc5J6jqc58FKaNQ==}
     dev: false
 
   /queue-microtask/1.2.3:
@@ -1759,9 +1759,9 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /typescript/4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  /typescript/5.0.4:
+    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
+    engines: {node: '>=12.20'}
     hasBin: true
     dev: true
 
