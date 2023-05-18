@@ -189,7 +189,8 @@ function Plugin() {
         <Text>
           <Muted>Tabler Icons v{version}</Muted>
         </Text>
-        <VerticalSpace space="medium" />
+        <VerticalSpace space="extraLarge" />
+        <VerticalSpace space="extraLarge" />
       </Container>
       <div className="footer">
         <Divider />
@@ -197,7 +198,7 @@ function Plugin() {
           <VerticalSpace space="small" />
           <Columns style={{ alignItems: "center" }}>
             <Checkbox onChange={handleOutlineChange} value={outlineStroke}>
-              <Text>Paste icon as outline</Text>
+              <Text>Paste icons as outline</Text>
             </Checkbox>
             <Text align="right">
               <Link

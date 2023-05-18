@@ -16,10 +16,12 @@ a:hover {
 }
 
 .footer {
-	position: sticky;
+	position: fixed;
 	bottom: 0;
 	background: var(--figma-color-bg);
 	z-index: 1;
+	left: 0;
+	right: 0;
 }
 
 .grid {

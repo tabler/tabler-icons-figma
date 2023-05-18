@@ -25,6 +25,12 @@
     "id": "1169807996149376642",
     "name": "Tabler Icons",
     "main": "src/main.ts",
-    "ui": "src/ui.tsx"
+    "ui": "src/ui.tsx",
+    "networkAccess": {
+      "allowedDomains": [
+        "none"
+      ],
+      "reasoning": "This plugin does not require network access."
+    }
   }
 }
