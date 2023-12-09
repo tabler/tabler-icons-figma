@@ -26,8 +26,8 @@ devDependencies:
     specifier: 1.70.0
     version: 1.70.0
   '@tabler/icons':
-    specifier: ^2.42.0
-    version: 2.42.0
+    specifier: ^2.43.0
+    version: 2.43.0
   fuse.js:
     specifier: ^6.6.2
     version: 6.6.2
@@ -336,8 +336,8 @@ packages:
       escape-string-regexp: 5.0.0
     dev: true
 
-  /@tabler/icons@2.42.0:
-    resolution: {integrity: sha512-ynV4iaC1c1mUhuAr9HRaoq8KrWYmZ0bJEpOh7qTBE+OfdDsdvQUe+0S7FW+DHkJ4RuxQMdO8djrZK7HrUw9YMA==}
+  /@tabler/icons@2.43.0:
+    resolution: {integrity: sha512-afToJMJj31Q9Put1/saemluLBvWhgzsF59QM/mJZZ7LLHW12ViumyQIwA31SRCH/HsYBEoRp2qHFt0QwIFWDFw==}
     dev: true
 
   /@trysound/sax@0.2.0:
