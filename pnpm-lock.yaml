@@ -7,37 +7,37 @@ settings:
 dependencies:
   '@create-figma-plugin/ui':
     specifier: ^3.1.0
-    version: 3.1.0(preact@10.19.3)
+    version: 3.1.0(preact@10.19.6)
   '@create-figma-plugin/utilities':
     specifier: ^3.1.0
     version: 3.1.0
   preact:
-    specifier: ^10.19.3
-    version: 10.19.3
+    specifier: ^10.19.6
+    version: 10.19.6
 
 devDependencies:
   '@create-figma-plugin/build':
     specifier: ^3.1.0
-    version: 3.1.0(@figma/plugin-typings@1.82.0)(typescript@5.0.4)
+    version: 3.1.0(@figma/plugin-typings@1.88.0)(typescript@5.3.3)
   '@create-figma-plugin/tsconfig':
     specifier: ^3.1.0
     version: 3.1.0
   '@figma/plugin-typings':
-    specifier: 1.82.0
-    version: 1.82.0
+    specifier: 1.88.0
+    version: 1.88.0
   '@tabler/icons':
-    specifier: ^2.46.0
-    version: 2.46.0
+    specifier: ^2.47.0
+    version: 2.47.0
   fuse.js:
     specifier: ^7.0.0
     version: 7.0.0
   typescript:
-    specifier: ^5.0.4
-    version: 5.0.4
+    specifier: ^5.3.3
+    version: 5.3.3
 
 packages:
 
-  /@create-figma-plugin/build@3.1.0(@figma/plugin-typings@1.82.0)(typescript@5.0.4):
+  /@create-figma-plugin/build@3.1.0(@figma/plugin-typings@1.88.0)(typescript@5.3.3):
     resolution: {integrity: sha512-vmMIg/kwn293XJdQSSZEnU8udkONOjUA9MpfU+xnT7L6kbVQ3B+1acYt5wWDTuM36QlwHQ9DZxD1vByFNdsCag==}
     engines: {node: '>=20'}
     hasBin: true
@@ -46,7 +46,7 @@ packages:
       typescript: '>=4'
     dependencies:
       '@create-figma-plugin/common': 3.1.0
-      '@figma/plugin-typings': 1.82.0
+      '@figma/plugin-typings': 1.88.0
       chokidar: 3.5.3
       cssnano: 6.0.1(postcss@8.4.32)
       esbuild: 0.19.8
@@ -62,7 +62,7 @@ packages:
       temp-write: 5.0.0
       tempy: 3.1.0
       typed-css-modules: 0.8.1
-      typescript: 5.0.4
+      typescript: 5.3.3
     dev: true
 
   /@create-figma-plugin/common@3.1.0:
@@ -78,14 +78,14 @@ packages:
     resolution: {integrity: sha512-DrKUi7hlTbPA80cZ4o4WtMGCpe23V+HL6vrjvjaXG8i7XplFGTV0XYB77T2K6R7Mi7BuF2fZRYTVDYnqgSk+6A==}
     dev: true
 
-  /@create-figma-plugin/ui@3.1.0(preact@10.19.3):
+  /@create-figma-plugin/ui@3.1.0(preact@10.19.6):
     resolution: {integrity: sha512-V8q5HtypBTxE3i8migBw6XNrM7fCtsgBEQ0/nwZw5q0in7sDNNtwu9H7ghyN8WX1NMqIBeNBGMPvwBUrzWj9KQ==}
     engines: {node: '>=20'}
     peerDependencies:
       preact: '>=10'
     dependencies:
       '@create-figma-plugin/utilities': 3.1.0
-      preact: 10.19.3
+      preact: 10.19.6
     dev: false
 
   /@create-figma-plugin/utilities@3.1.0:
@@ -295,8 +295,8 @@ packages:
     dev: true
     optional: true
 
-  /@figma/plugin-typings@1.82.0:
-    resolution: {integrity: sha512-To5M9VRpNysrGGtZtPF5Ke9eobfhTUr7kieAsYMhpPg+VKdr0EM6XDFtCqhtuDrLfPAZFa/cBQo68auWwD4mlA==}
+  /@figma/plugin-typings@1.88.0:
+    resolution: {integrity: sha512-ly9amJtPqlR48FZB0iKfyeCSo4O0QJhOfX+YYS/xEq0zoJzNETJLLQ43k93BS2W/N/BOVzgEjyAvC1WeuwFbdA==}
     dev: true
 
   /@isaacs/cliui@8.0.2:
@@ -359,8 +359,8 @@ packages:
       escape-string-regexp: 5.0.0
     dev: true
 
-  /@tabler/icons@2.46.0:
-    resolution: {integrity: sha512-Q5G8Pj5IO+Uhc6pszpu5/hGYY018JwEzzvmuqr+gKJtfIvAHA3umpwUilMRLEy89p+WCP+YsDhicMhfBCCv1qA==}
+  /@tabler/icons@2.47.0:
+    resolution: {integrity: sha512-4w5evLh+7FUUiA1GucvGj2ReX2TvOjEr4ejXdwL/bsjoSkof6r1gQmzqI+VHrE2CpJpB3al7bCTulOkFa/RcyA==}
     dev: true
 
   /@trysound/sax@0.2.0:
@@ -1423,8 +1423,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /preact@10.19.3:
-    resolution: {integrity: sha512-nHHTeFVBTHRGxJXKkKu5hT8C/YWBkPso4/Gad6xuj5dbptt9iF9NZr9pHbPhBrnT2klheu7mHTxTZ/LjwJiEiQ==}
+  /preact@10.19.6:
+    resolution: {integrity: sha512-gympg+T2Z1fG1unB8NH29yHJwnEaCH37Z32diPDku316OTnRPeMbiRV9kTrfZpocXjdfnWuFUl/Mj4BHaf6gnw==}
     dev: false
 
   /queue-microtask@1.2.3:
@@ -1632,9 +1632,9 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /typescript@5.0.4:
-    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
-    engines: {node: '>=12.20'}
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
