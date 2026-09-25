@@ -54,7 +54,6 @@ function IconButton({
 
   return (
     <button
-      key={icon.name}
       aria-label={icon.name}
       onClick={() => handleClick(icon.name, svg)}
       class="icon-button"
@@ -63,6 +62,22 @@ function IconButton({
   );
 }
 
+const categories: Array<DropdownOption> = [
+	{ value: '', text: 'All categories' },
+	...Array.from(new Set(icons.map((icon) => icon.category)))
+		.filter((category) => category !== '')
+		.sort()
+		.map((category) => ({ value: category, text: category })),
+]
+
+const strokes: Array<DropdownOption> = [
+	{ value: '1', text: 'Thin' },
+	{ value: '1.5', text: 'Light' },
+	{ value: '2', text: 'Normal' },
+]
+
+const limit = 102
+
 function Plugin() {
 	const [search, setSearch] = useState<string>('')
 	const [category, setCategory] = useState<string>('')
@@ -70,7 +85,6 @@ function Plugin() {
 	const [outlineStroke, setOutlineStroke] = useState<boolean>(false);
 
 	const results = useSearch(search, category)
-	const limit = 102
 
 	function handleInput(event: JSX.TargetedEvent<HTMLInputElement>) {
 		setSearch(event.currentTarget.value)
@@ -87,32 +101,6 @@ function Plugin() {
 	function handleOutlineChange(event: JSX.TargetedEvent<HTMLInputElement>) {
     setOutlineStroke(event.currentTarget.checked);
   }
-
-	let c: string[] = []
-	icons.forEach((i) => {
-		if(i.category != '' && c.indexOf(i.category) === -1) {
-			c.push(i.category)
-		}
-	})
-
-	c.sort()
-
-	const categories: Array<DropdownOption> = [
-		{ value: '', text: 'All categories' },
-	]
-
-	c.forEach((i) => {
-		categories.push({
-			value: i,
-			text: i
-		})
-	})
-
-	const strokes: Array<DropdownOption> = [
-		{ value: '1', text: 'Thin' },
-		{ value: '1.5', text: 'Light' },
-		{ value: '2', text: 'Normal' },
-	]
 
 	return (
     <div>
@@ -163,6 +151,7 @@ function Plugin() {
         <div class="grid">
           {results.slice(0, limit).map((icon) => (
             <IconButton
+              key={icon.name}
               icon={icon}
               stroke={stroke}
               outlineStroke={outlineStroke}
