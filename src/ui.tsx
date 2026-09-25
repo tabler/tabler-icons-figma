@@ -16,6 +16,8 @@ import {
   Link,
   IconFolder16,
   IconPen16,
+  SegmentedControl,
+  SegmentedControlOption,
 } from "@create-figma-plugin/ui";
 import {
 	emit,
@@ -24,51 +26,77 @@ import {
 import { h, JSX } from 'preact'
 import { useState } from 'preact/hooks'
 import { version, icons } from './icons.json'
-import useSearch from './use-search'
-import { buildSvg } from './svg'
+import useSearch, { filledIcons } from './use-search'
+import { IconStyle, buildFilledSvg, buildOutlineSvg } from './svg'
 
 type Icon = {
 	name: string,
 	body: string,
+	filled?: string,
 	category: string,
 	tags: string[]
 }
 
 function IconButton({
   icon,
+  style,
   stroke,
   outlineStroke,
 }: {
   icon: Icon;
+  style: IconStyle;
   stroke: string;
   outlineStroke: boolean;
 }) {
-  const svg = buildSvg(icon.body, stroke);
+  const isFilled = style === "filled" && icon.filled !== undefined;
+  const svg = isFilled
+    ? buildFilledSvg(icon.filled as string)
+    : buildOutlineSvg(icon.body, stroke);
+  const name = isFilled ? `${icon.name}-filled` : icon.name;
 
-  const handleClick = (name: string, svg: string) => {
+  const handleClick = () => {
     emit("SUBMIT", {
       name,
       svg,
-      outlineStroke,
+      // Filled icons have no strokes to outline.
+      outlineStroke: outlineStroke && !isFilled,
     });
   };
 
   return (
     <button
-      aria-label={icon.name}
-      onClick={() => handleClick(icon.name, svg)}
+      aria-label={name}
+      onClick={handleClick}
       class="icon-button"
       dangerouslySetInnerHTML={{ __html: svg }}
     ></button>
   );
 }
 
-const categories: Array<DropdownOption> = [
-	{ value: '', text: 'All categories' },
-	...Array.from(new Set(icons.map((icon) => icon.category)))
-		.filter((category) => category !== '')
-		.sort()
-		.map((category) => ({ value: category, text: category })),
+function categoryOptions(list: Array<Icon>): Array<DropdownOption> {
+	return [
+		{ value: '', text: 'All categories' },
+		...Array.from(new Set(list.map((icon) => icon.category)))
+			.filter((category) => category !== '')
+			.sort()
+			.map((category) => ({ value: category, text: category })),
+	]
+}
+
+const iconsByStyle: Record<IconStyle, Array<Icon>> = {
+	outline: icons,
+	filled: filledIcons,
+}
+
+// Some categories have no filled icons, so each style gets its own list.
+const categoriesByStyle: Record<IconStyle, Array<DropdownOption>> = {
+	outline: categoryOptions(icons),
+	filled: categoryOptions(filledIcons),
+}
+
+const styles: Array<SegmentedControlOption> = [
+	{ value: 'outline', children: 'Outline' },
+	{ value: 'filled', children: 'Filled' },
 ]
 
 const strokes: Array<DropdownOption> = [
@@ -84,8 +112,10 @@ function Plugin() {
 	const [category, setCategory] = useState<string>('')
 	const [stroke, setStroke] = useState<string>('2')
 	const [outlineStroke, setOutlineStroke] = useState<boolean>(false);
+	const [style, setStyle] = useState<IconStyle>('outline')
 
-	const results = useSearch(search, category)
+	const results = useSearch(search, category, style)
+	const categories = categoriesByStyle[style]
 
 	function handleInput(event: JSX.TargetedEvent<HTMLInputElement>) {
 		setSearch(event.currentTarget.value)
@@ -102,6 +132,16 @@ function Plugin() {
 	function handleOutlineChange(event: JSX.TargetedEvent<HTMLInputElement>) {
     setOutlineStroke(event.currentTarget.checked);
   }
+
+	function handleStyleChange(value: string) {
+		const nextStyle = value as IconStyle
+		setStyle(nextStyle)
+
+		// Reset the category if the new style has no icons in it.
+		if (category !== '' && !iconsByStyle[nextStyle].some((icon) => icon.category === category)) {
+			setCategory('')
+		}
+	}
 
 	return (
     <div>
@@ -120,16 +160,26 @@ function Plugin() {
               onChange={handleStrokeChange}
               options={strokes}
               value={stroke}
+              disabled={style === "filled"}
             />
           </Columns>
         </Container>
         <VerticalSpace space="extraSmall" />
         <Container space="extraSmall">
-          <SearchTextbox
-            onInput={handleInput}
-            placeholder={`Search ${icons.length} icons`}
-            value={search}
-          />
+          <div class="search-row">
+            <div class="search-row-textbox">
+              <SearchTextbox
+                onInput={handleInput}
+                placeholder={`Search ${iconsByStyle[style].length} icons`}
+                value={search}
+              />
+            </div>
+            <SegmentedControl
+              onValueChange={handleStyleChange}
+              options={styles}
+              value={style}
+            />
+          </div>
           <VerticalSpace space="extraSmall" />
         </Container>
       </div>
@@ -154,6 +204,7 @@ function Plugin() {
             <IconButton
               key={icon.name}
               icon={icon}
+              style={style}
               stroke={stroke}
               outlineStroke={outlineStroke}
             />
@@ -191,7 +242,11 @@ function Plugin() {
         <Container space="medium">
           <VerticalSpace space="small" />
           <Columns style={{ alignItems: "center" }}>
-            <Checkbox onChange={handleOutlineChange} value={outlineStroke}>
+            <Checkbox
+              onChange={handleOutlineChange}
+              value={outlineStroke}
+              disabled={style === "filled"}
+            >
               <Text>Paste icons as outline</Text>
             </Checkbox>
             <Text align="right">
