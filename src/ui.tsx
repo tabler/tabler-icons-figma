@@ -25,12 +25,13 @@ import { h, JSX } from 'preact'
 import { useState } from 'preact/hooks'
 import { version, icons } from './icons.json'
 import useSearch from './use-search'
+import { buildSvg } from './svg'
 
 type Icon = {
 	name: string,
-	svg: string,
+	body: string,
 	category: string,
-	tags: (string | number | null)[]
+	tags: string[]
 }
 
 function IconButton({
@@ -42,7 +43,7 @@ function IconButton({
   stroke: string;
   outlineStroke: boolean;
 }) {
-  const svg = icon.svg.replace('stroke-width="2"', `stroke-width="${stroke}"`);
+  const svg = buildSvg(icon.body, stroke);
 
   const handleClick = (name: string, svg: string) => {
     emit("SUBMIT", {
