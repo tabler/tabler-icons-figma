@@ -14,6 +14,8 @@ import {
   Columns,
   Checkbox,
   Link,
+  IconFolder16,
+  IconPen16,
 } from "@create-figma-plugin/ui";
 import {
 	emit,
@@ -115,32 +117,34 @@ function Plugin() {
 	return (
     <div>
       <div class="search">
-        <SearchTextbox
-          onInput={handleInput}
-          placeholder={`Search ${icons.length} icons`}
-          value={search}
-        />
-        <Divider />
         <Container space="extraSmall">
           <VerticalSpace space="extraSmall" />
           <Columns space="small">
             <Dropdown
+              icon={<IconFolder16 />}
               onChange={handleCategoryChange}
               options={categories}
               value={category}
             />
             <Dropdown
+              icon={<IconPen16 />}
               onChange={handleStrokeChange}
               options={strokes}
               value={stroke}
             />
           </Columns>
+        </Container>
+        <VerticalSpace space="extraSmall" />
+        <Container space="extraSmall">
+          <SearchTextbox
+            onInput={handleInput}
+            placeholder={`Search ${icons.length} icons`}
+            value={search}
+          />
           <VerticalSpace space="extraSmall" />
         </Container>
-        <Divider />
       </div>
       <Container space="small">
-        <VerticalSpace space="small" />
         {(search || category != "") && (
           <div>
             <Text>
