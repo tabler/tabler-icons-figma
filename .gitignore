@@ -9,3 +9,5 @@ manifest.json
 .yarn
 .yarnrc.yml
 yarn.lock
+
+.figma-tests/
