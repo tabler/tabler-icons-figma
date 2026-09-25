@@ -1,5 +1,7 @@
 # Tabler Icons for Figma
 
+![Tabler Icons plugin for Figma](.github/cover.png)
+
 Figma and FigJam plugin that lets you search the [Tabler Icons](https://tabler.io/icons) set and insert any icon on the canvas as a vector.
 
 Plugin page: https://www.figma.com/community/plugin/1169807996149376642
