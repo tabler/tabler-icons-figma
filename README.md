@@ -20,7 +20,8 @@ src/main.ts        plugin sandbox: receives SUBMIT events and creates nodes via 
 src/ui.tsx         plugin UI (Preact + @create-figma-plugin/ui)
 src/use-search.ts  Fuse.js search hook
 src/ui.css         UI styles
-src/icons.json     generated: version + name/category/tags/svg for every outline icon
+src/svg.ts         rebuilds a full <svg> from an icon body and stroke width
+src/icons.json     generated: version + name/category/tags/body for every outline icon
 import-icons.js    generates src/icons.json from the @tabler/icons package
 ```
 
@@ -52,7 +53,7 @@ This upgrades `@tabler/icons` to the latest version, regenerates `src/icons.json
 pnpm run icons:generate
 ```
 
-Only the `outline` icon variant is imported.
+Only the `outline` icon variant is imported. To keep the bundle small, `icons.json` stores only the markup inside each `<svg>`; the shared root attributes live in `src/svg.ts`. The import script fails if Tabler changes those root attributes, so the two stay in sync.
 
 ## Notes
 
