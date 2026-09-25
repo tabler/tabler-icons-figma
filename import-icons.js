@@ -29,8 +29,9 @@ const EXPECTED_ROOT_ATTRIBUTES = {
 	],
 }
 
-const readSvgBody = (iconName, style) => {
-	const svg = fs.readFileSync(`./node_modules/@tabler/icons/icons/${style}/${iconName}.svg`).toString()
+// Returns the markup inside the root <svg> element, without Tabler's invisible
+// 24x24 background path.
+const parseSvgBody = (iconName, style, svg) => {
 	const match = svg
 		.replace(/\n/g, '')
 		.replace(/>\s+</g, '><')
@@ -55,13 +56,18 @@ const readSvgBody = (iconName, style) => {
 		.replace(/\s+\/>/g, '/>')
 }
 
+const readSvgBody = (iconName, style) => parseSvgBody(
+	iconName,
+	style,
+	fs.readFileSync(`./node_modules/@tabler/icons/icons/${style}/${iconName}.svg`).toString(),
+)
+
 const normalizeTags = (tags) => (tags || [])
 	.filter((tag) => tag !== null && tag !== '')
 	.map(String)
 
-const iconsPkg = require('./node_modules/@tabler/icons/package.json')
-
 const generateIconsJSON = (jsonFile, filename) => {
+	const iconsPkg = require('./node_modules/@tabler/icons/package.json')
 	const files = JSON.parse(fs.readFileSync(jsonFile))
 
 	const icons = Object.keys(files).map((iconName) => {
@@ -85,4 +91,8 @@ const generateIconsJSON = (jsonFile, filename) => {
 	fs.writeFileSync(filename, JSON.stringify({ version: iconsPkg.version, icons }))
 }
 
-generateIconsJSON('./node_modules/@tabler/icons/icons.json', './src/icons.json')
+module.exports = { parseSvgBody, normalizeTags }
+
+if (require.main === module) {
+	generateIconsJSON('./node_modules/@tabler/icons/icons.json', './src/icons.json')
+}

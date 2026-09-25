@@ -36,7 +36,10 @@ Requirements: Node.js 22+ and pnpm.
 pnpm install
 pnpm run build    # typecheck + minified build into build/, generates manifest.json
 pnpm run watch    # rebuild on change
+pnpm run test:unit   # unit tests (Vitest)
 ```
+
+Unit tests in `tests/unit/` cover the SVG builders, icon search, SVG parsing in `import-icons.js`, and how `insertIcon` combines paths, using a small stand-in for the Figma API.
 
 To load the plugin in Figma: open the desktop app, run `Import plugin from manifest…` from Quick Actions and pick the generated `manifest.json`.
 
