@@ -67,6 +67,7 @@ function IconButton({
   return (
     <button
       aria-label={name}
+      title={name}
       onClick={handleClick}
       class="icon-button"
       dangerouslySetInnerHTML={{ __html: svg }}
@@ -262,7 +263,7 @@ function Plugin() {
             </Checkbox>
             <Text align="right">
               <Link
-                href="https://tabler-icons.io/?utm_source=figma-plugin"
+                href="https://tabler.io/icons?utm_source=figma-plugin"
                 target="_blank"
               >
                 Tabler Icons
