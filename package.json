@@ -9,6 +9,7 @@
     "@create-figma-plugin/build": "^4.0.3",
     "@create-figma-plugin/tsconfig": "^4.0.3",
     "@figma/plugin-typings": "1.139.0",
+    "@playwright/test": "^1.63.0",
     "@tabler/icons": "^3.48.0",
     "fuse.js": "^7.5.0",
     "typescript": "^5.9.3",
@@ -20,7 +21,8 @@
     "icons": "pnpm up --latest @tabler/icons && pnpm run icons:generate && pnpm run build && git add package.json pnpm-lock.yaml src/icons.json && git commit -m \"update icons to v`node -p \\\"require('./node_modules/@tabler/icons/package.json').version\\\"`\" && git push",
     "icons:generate": "node import-icons.js",
     "test:figma": "node scripts/figma-tests.mjs",
-    "test:unit": "vitest run"
+    "test:unit": "vitest run",
+    "test:ui": "playwright test"
   },
   "figma-plugin": {
     "editorType": [

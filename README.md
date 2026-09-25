@@ -43,6 +43,18 @@ Unit tests in `tests/unit/` cover the SVG builders, icon search, SVG parsing in 
 
 To load the plugin in Figma: open the desktop app, run `Import plugin from manifest…` from Quick Actions and pick the generated `manifest.json`.
 
+## UI tests
+
+The plugin UI is tested in a browser with Playwright. `tests/ui/harness.html` loads the built `build/ui.js` at the plugin window size, stubs the Figma theme colours and records the messages the UI sends to the plugin sandbox.
+
+```
+pnpm run build
+pnpm exec playwright install chromium   # first run only
+pnpm run test:ui
+```
+
+CI runs these tests on every push and pull request.
+
 ## Testing icon insertion in Figma
 
 `src/insert-icon.ts` holds the code that turns an SVG into a Figma node. It can be run against a real Figma file through the [Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559) (`upload_assets` and `use_figma` tools), for example from Claude Code.
