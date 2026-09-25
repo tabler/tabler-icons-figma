@@ -8,7 +8,8 @@ import {
   Text,
   Muted,
   VerticalSpace,
-  SearchTextbox,
+  Textbox,
+  IconSearchSmall24,
   DropdownOption,
   Dropdown,
   Columns,
@@ -121,6 +122,14 @@ function Plugin() {
 		setSearch(event.currentTarget.value)
 	}
 
+	// Textbox has no clear button, so Escape clears the search like SearchTextbox did.
+	function handleSearchKeyDown(event: JSX.TargetedKeyboardEvent<HTMLInputElement>) {
+		if (event.key === 'Escape' && search !== '') {
+			event.stopPropagation()
+			setSearch('')
+		}
+	}
+
 	function handleCategoryChange(event: JSX.TargetedEvent<HTMLInputElement>) {
 		setCategory(event.currentTarget.value)
 	}
@@ -168,8 +177,10 @@ function Plugin() {
         <Container space="extraSmall">
           <div class="search-row">
             <div class="search-row-textbox">
-              <SearchTextbox
+              <Textbox
+                icon={<IconSearchSmall24 />}
                 onInput={handleInput}
+                onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${iconsByStyle[style].length} icons`}
                 value={search}
               />
