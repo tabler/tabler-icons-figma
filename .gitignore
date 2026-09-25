@@ -3,6 +3,7 @@
 *.css.d.ts
 build/
 node_modules/
+.pnpm-store/
 manifest.json
 .idea
 .yarn

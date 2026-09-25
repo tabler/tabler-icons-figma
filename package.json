@@ -1,4 +1,5 @@
 {
+  "packageManager": "pnpm@12.4.2",
   "dependencies": {
     "@create-figma-plugin/ui": "^4.0.3",
     "@create-figma-plugin/utilities": "^4.0.3",
@@ -15,7 +16,8 @@
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",
     "watch": "build-figma-plugin --typecheck --watch",
-    "icons": "ncu -u @tabler/icons && pnpm install && node import-icons && pnpm run build && git add . && git commit -am \"update icons to v`pnpm info @tabler/icons version`\" && git push"
+    "icons": "pnpm up --latest @tabler/icons && pnpm run icons:generate && pnpm run build && git add package.json pnpm-lock.yaml src/icons.json && git commit -m \"update icons to v`node -p \\\"require('./node_modules/@tabler/icons/package.json').version\\\"`\" && git push",
+    "icons:generate": "node import-icons.js"
   },
   "figma-plugin": {
     "editorType": [
