@@ -26,6 +26,12 @@ jobs:
       - name: Typecheck and build
         run: pnpm run build
 
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: UI tests
+        run: pnpm run test:ui
+
       - name: Check icons.json is in sync with @tabler/icons
         run: |
           node import-icons.js

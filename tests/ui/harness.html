@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+  Loads the built plugin UI (build/ui.js) outside Figma. It provides what
+  showUI() from @create-figma-plugin/utilities would inject, stubs the Figma
+  theme colours and records messages the UI sends to the plugin sandbox.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Plugin UI harness</title>
+<style>
+	:root {
+		--figma-color-bg: #fff;
+		--figma-color-bg-brand: #0d99ff;
+		--figma-color-bg-disabled: #d9d9d9;
+		--figma-color-bg-onselected: #bde3ff;
+		--figma-color-bg-secondary: #f5f5f5;
+		--figma-color-bg-selected: #e5f4ff;
+		--figma-color-border: #e6e6e6;
+		--figma-color-border-brand-strong: #007be5;
+		--figma-color-border-selected: #0d99ff;
+		--figma-color-icon: #333;
+		--figma-color-icon-disabled: #b3b3b3;
+		--figma-color-icon-onbrand: #fff;
+		--figma-color-icon-secondary: #8c8c8c;
+		--figma-color-text: #333;
+		--figma-color-text-brand: #007be5;
+		--figma-color-text-disabled: #b3b3b3;
+		--figma-color-text-onbrand: #fff;
+		--figma-color-text-secondary: #8c8c8c;
+		--figma-color-text-tertiary: #b3b3b3;
+	}
+	html, body { margin: 0; }
+</style>
+</head>
+<body>
+<div id="create-figma-plugin"></div>
+<script>
+	window.pluginMessages = []
+	window.parent.postMessage = (message) => window.pluginMessages.push(message.pluginMessage)
+	const __FIGMA_COMMAND__ = ''
+	const __SHOW_UI_DATA__ = {}
+</script>
+<script src="../../build/ui.js"></script>
+</body>
+</html>

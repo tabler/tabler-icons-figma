@@ -11,3 +11,5 @@ manifest.json
 yarn.lock
 
 .figma-tests/
+test-results/
+playwright-report/
