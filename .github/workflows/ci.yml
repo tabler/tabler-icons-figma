@@ -20,6 +20,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Unit tests
+        run: pnpm run test:unit
+
       - name: Typecheck and build
         run: pnpm run build
 

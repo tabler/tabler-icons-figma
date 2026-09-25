@@ -11,14 +11,16 @@
     "@figma/plugin-typings": "1.139.0",
     "@tabler/icons": "^3.48.0",
     "fuse.js": "^7.5.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.1"
   },
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",
     "watch": "build-figma-plugin --typecheck --watch",
     "icons": "pnpm up --latest @tabler/icons && pnpm run icons:generate && pnpm run build && git add package.json pnpm-lock.yaml src/icons.json && git commit -m \"update icons to v`node -p \\\"require('./node_modules/@tabler/icons/package.json').version\\\"`\" && git push",
     "icons:generate": "node import-icons.js",
-    "test:figma": "node scripts/figma-tests.mjs"
+    "test:figma": "node scripts/figma-tests.mjs",
+    "test:unit": "vitest run"
   },
   "figma-plugin": {
     "editorType": [
