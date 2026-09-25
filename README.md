@@ -40,6 +40,36 @@ pnpm run watch    # rebuild on change
 
 To load the plugin in Figma: open the desktop app, run `Import plugin from manifest…` from Quick Actions and pick the generated `manifest.json`.
 
+## Testing icon insertion in Figma
+
+`src/insert-icon.ts` holds the code that turns an SVG into a Figma node. It can be run against a real Figma file through the [Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559) (`upload_assets` and `use_figma` tools), for example from Claude Code.
+
+The `use_figma` sandbox has no network access and limits each script to 50,000 characters, so the test code and all icon data are packed into a PNG:
+
+```
+pnpm run test:figma
+```
+
+This writes two files to `.figma-tests/`:
+
+- `payload.png` contains the transpiled `src/insert-icon.ts` and `src/svg.ts`, the icon data and the test runner, in a private PNG chunk.
+- `loader.js` is a short script that finds the newest payload image on the current page, reads it and runs the tests.
+
+To run the tests:
+
+1. Upload `payload.png` to a test file with `upload_assets`.
+2. Edit `OPTIONS` at the top of `loader.js` and run it with `use_figma`.
+
+| `OPTIONS` | What it does |
+|---|---|
+| `{ mode: 'smoke', set: 'special' }` | Outline icons with extra path attributes such as filled dots or opacity |
+| `{ mode: 'smoke', set: 'filled', start, count }` | Filled icons |
+| `{ mode: 'smoke', set: 'outline', start, count }` | All outline icons, as strokes and pasted as outline |
+| `{ mode: 'smoke', set: 'outline', names: [...] }` | Only the named icons |
+| `{ mode: 'visual', names: [...] }` | A grid of icons in every variant, next to the SVG imported without flattening |
+
+Smoke tests create each icon off-canvas, check it and remove it. They return the issues found and a count of result shapes. About 1,300 outline icons fit in one call of roughly 30 seconds. The payload records the commit and source hashes it was built from.
+
 ## Updating icons
 
 `src/icons.json` is generated from the `@tabler/icons` package and must be regenerated whenever that dependency changes. CI fails if the file is out of sync.
