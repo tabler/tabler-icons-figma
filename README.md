@@ -93,7 +93,26 @@ Smoke tests create each icon off-canvas, check it and remove it. They return the
 pnpm run icons
 ```
 
-This upgrades `@tabler/icons` to the latest version, regenerates `src/icons.json`, builds the plugin, and commits and pushes the result as `update icons to vX.Y.Z`. To only regenerate the file without committing:
+This runs `scripts/update-icons.mjs`. If a newer `@tabler/icons` release exists, it:
+
+1. creates a branch `update-icons-vX.Y.Z` (the working tree must be clean),
+2. installs the new version and regenerates `src/icons.json`,
+3. builds the plugin and runs the unit and UI tests,
+4. prints how many outline and filled icons were added or removed,
+5. commits the result as `update icons to vX.Y.Z`, pushes the branch and opens a pull request with that summary.
+
+If the icons are already up to date, it does nothing.
+
+| Option | Effect |
+|---|---|
+| `--check` | Only report whether an update is available |
+| `--no-pr` | Stop after committing on the new branch |
+| `--skip-tests` | Skip the unit and UI tests |
+| `--version X.Y.Z` | Use a specific version instead of the latest, pinned exactly |
+
+Options go after `--`, for example `pnpm run icons -- --check`.
+
+To only regenerate the file without committing:
 
 ```
 pnpm run icons:generate
