@@ -85,6 +85,29 @@ To run the tests:
 
 Smoke tests create each icon off-canvas, check it and remove it. They return the issues found and a count of result shapes. About 1,300 outline icons fit in one call of roughly 30 seconds. The payload records the commit and source hashes it was built from.
 
+## Releasing
+
+Figma has no API for publishing plugin versions, so the final click happens in the Figma desktop app. Everything around it is one command, run on an up-to-date `main`:
+
+```
+pnpm run release
+```
+
+It builds the plugin and runs the unit and UI tests. It then drafts release notes from the changes since the last `release-*` tag and opens them in `$EDITOR`, or TextEdit on macOS. The edited notes are copied to the clipboard and the Figma app is opened. Then:
+
+1. In Figma, open **Plugins > Manage plugins**.
+2. Next to Tabler Icons, choose **Publish new version**. If it is missing, choose **Locate local version** and pick `manifest.json` from this repository. Figma uses the local `build/` output.
+3. Paste the notes and publish.
+4. Confirm in the terminal. The script tags the commit as `release-YYYY-MM-DD` and pushes the tag.
+
+| Option | Effect |
+|---|---|
+| `--dry-run` | Build, test and print the draft notes only |
+| `--since <ref>` | Base the notes on a commit, needed before the first `release-*` tag exists |
+| `--no-edit` | Use the draft notes without opening an editor |
+| `--skip-tests` | Skip unit and UI tests |
+| `--yes` | Tag without asking for confirmation |
+
 ## Updating icons
 
 `src/icons.json` is generated from the `@tabler/icons` package and must be regenerated whenever that dependency changes. CI fails if the file is out of sync.
