@@ -54,3 +54,14 @@ a:hover {
 	border: 1px solid var(--figma-color-border-selected);
 	outline: 1px solid var(--figma-color-border-selected);
 }
+
+.search-row {
+	display: flex;
+	align-items: center;
+	gap: var(--space-extra-small);
+}
+
+.search-row-textbox {
+	flex: 1;
+	min-width: 0;
+}

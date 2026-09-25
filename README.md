@@ -7,9 +7,10 @@ Plugin page: https://www.figma.com/community/plugin/1169807996149376642
 ## How it works
 
 - Search over icon names, tags and categories (fuzzy matching via Fuse.js).
-- Filter by category and pick the stroke width (thin, light, normal).
-- Click an icon to place it in the centre of the viewport as a flattened vector named `tabler-icon-<name>`.
-- Optionally paste icons as outlined fills instead of strokes.
+- Switch between outline and filled icons. Filled mode shows only the icons that have a filled variant.
+- Filter by category and pick the stroke width (thin, light, normal) for outline icons.
+- Click an icon to place it in the centre of the viewport as a flattened vector named `tabler-icon-<name>`, or `tabler-icon-<name>-filled` for filled icons.
+- Optionally paste outline icons as outlined fills instead of strokes.
 
 All SVG data is bundled into the plugin at build time, so the plugin needs no network access.
 
@@ -20,8 +21,8 @@ src/main.ts        plugin sandbox: receives SUBMIT events and creates nodes via 
 src/ui.tsx         plugin UI (Preact + @create-figma-plugin/ui)
 src/use-search.ts  Fuse.js search hook
 src/ui.css         UI styles
-src/svg.ts         rebuilds a full <svg> from an icon body and stroke width
-src/icons.json     generated: version + name/category/tags/body for every outline icon
+src/svg.ts         rebuilds a full <svg> from an icon body (outline with stroke width, or filled)
+src/icons.json     generated: version + name/category/tags/body, plus filled body where available
 import-icons.js    generates src/icons.json from the @tabler/icons package
 ```
 
@@ -53,7 +54,7 @@ This upgrades `@tabler/icons` to the latest version, regenerates `src/icons.json
 pnpm run icons:generate
 ```
 
-Only the `outline` icon variant is imported. To keep the bundle small, `icons.json` stores only the markup inside each `<svg>`; the shared root attributes live in `src/svg.ts`. The import script fails if Tabler changes those root attributes, so the two stay in sync.
+Both the `outline` and `filled` variants are imported; `filled` is present only for icons that have one. To keep the bundle small, `icons.json` stores only the markup inside each `<svg>`; the shared root attributes for each style live in `src/svg.ts`. The import script fails if Tabler changes those root attributes, so the two stay in sync.
 
 ## Notes
 
