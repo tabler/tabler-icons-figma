@@ -73,26 +73,31 @@ function check(frame, expected) {
 	if (frame.name !== 'tabler-icon-' + expected.name) issues.push('name ' + frame.name)
 	if (frame.width !== 24 || frame.height !== 24) issues.push('size ' + frame.width + 'x' + frame.height)
 	if (visible(frame.fills).length) issues.push('frame has visible fill')
-	if (frame.children.length !== 1) issues.push(frame.children.length + ' children')
-	const v = frame.children[0]
-	if (!v) return { issues, signature: 'empty' }
-	if (v.type !== 'VECTOR') issues.push('child is ' + v.type)
-	const fills = fillsOf(v)
-	const strokes = visible(v.strokes)
-	if (![...fills.paints, ...strokes].every(BLACK)) issues.push('non-black paint')
-	if (expected.stroke) {
-		if (!strokes.length) issues.push('missing stroke')
-		else if (v.strokeWeight !== Number(expected.stroke)) issues.push('strokeWeight ' + String(v.strokeWeight))
-	} else {
-		if (strokes.length) issues.push('unexpected stroke')
-		if (!fills.paints.length) issues.push('missing fill')
+	const children = frame.children
+	if (!children.length) return { issues: [...issues, 'no children'], signature: 'empty' }
+	// Pasted as outline, icons with filled parts keep them as extra fill-only vectors.
+	if (children.length !== 1 && !expected.outlineStroke) issues.push(children.length + ' children')
+	const signatures = []
+	for (const v of children) {
+		if (v.type !== 'VECTOR') issues.push('child is ' + v.type)
+		const fills = fillsOf(v)
+		const strokes = visible(v.strokes)
+		if (![...fills.paints, ...strokes].every(BLACK)) issues.push('non-black paint')
+		if (expected.stroke) {
+			if (!strokes.length) issues.push('missing stroke')
+			else if (v.strokeWeight !== Number(expected.stroke)) issues.push('strokeWeight ' + String(v.strokeWeight))
+		} else {
+			if (strokes.length) issues.push('unexpected stroke')
+			if (!fills.paints.length) issues.push('missing fill')
+		}
+		// A single straight line (minus, letter-i) legitimately has zero width or height.
+		if (v.width <= 0 && v.height <= 0) issues.push('empty vector')
+		if (v.x < -1 || v.y < -1 || v.x + v.width > 25 || v.y + v.height > 25) {
+			issues.push('vector out of bounds ' + [v.x, v.y, v.width, v.height].map((n) => n.toFixed(1)).join(','))
+		}
+		signatures.push(v.type + ' fills:' + (fills.mixed ? 'mixed' : fills.paints.length ? 'yes' : 'no') + ' filledRegions:' + fills.filledRegions + ' strokes:' + strokes.length)
 	}
-	// A single straight line (minus, letter-i) legitimately has zero width or height.
-	if (v.width <= 0 && v.height <= 0) issues.push('empty vector')
-	if (v.x < -1 || v.y < -1 || v.x + v.width > 25 || v.y + v.height > 25) {
-		issues.push('vector out of bounds ' + [v.x, v.y, v.width, v.height].map((n) => n.toFixed(1)).join(','))
-	}
-	const signature = v.type + ' fills:' + (fills.mixed ? 'mixed' : fills.paints.length ? 'yes' : 'no') + ' filledRegions:' + fills.filledRegions + ' strokes:' + strokes.length
+	const signature = (children.length > 1 ? children.length + ' children: ' : '') + [...new Set(signatures)].join(' | ')
 	return { issues, signature }
 }
 
