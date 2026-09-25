@@ -65,3 +65,32 @@ a:hover {
 	flex: 1;
 	min-width: 0;
 }
+
+/*
+ * SearchTextbox is 32px tall by default. Shrink it to the 24px height of the
+ * dropdowns and the segmented control. The component uses CSS modules, so its
+ * parts are matched by the stable part of their generated class names.
+ */
+.search-row-textbox [class*="_input_"] {
+	height: 24px;
+	padding: 0 24px 0 28px;
+}
+
+.search-row-textbox [class*="_searchIcon_"] {
+	top: 0;
+}
+
+.search-row-textbox [class*="_clearButton_"] {
+	width: 24px;
+	height: 24px;
+	padding: 0;
+}
+
+.search-row-textbox [class*="_clearButtonBox_"] {
+	border: 0;
+}
+
+.search-row-textbox [class*="_clearButton_"]:focus-visible [class*="_clearButtonBox_"] {
+	outline: 1px solid var(--figma-color-border-selected);
+	outline-offset: -1px;
+}
