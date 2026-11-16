@@ -10,7 +10,7 @@
     "@create-figma-plugin/tsconfig": "^4.0.3",
     "@figma/plugin-typings": "1.139.0",
     "@playwright/test": "^1.63.0",
-    "@tabler/icons": "^3.48.0",
+    "@tabler/icons": "^3.52.0",
     "fuse.js": "^7.5.0",
     "typescript": "^5.9.3",
     "vitest": "^5.0.1"

@@ -189,8 +189,8 @@ importers:
         specifier: ^1.63.0
         version: 1.63.0
       '@tabler/icons':
-        specifier: ^3.48.0
-        version: 3.48.0
+        specifier: ^3.52.0
+        version: 3.52.0
       fuse.js:
         specifier: ^7.5.0
         version: 7.5.0
@@ -533,8 +533,8 @@ packages:
     resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
     engines: {node: '>=12'}
 
-  '@tabler/icons@3.48.0':
-    resolution: {integrity: sha512-lQk06gVHNVBnJp0UOgtth54mcZBJM7rdYKsAxKOProj1bbSAx+/xiuOWfHlyvgdL3M+Y+I0HINrjHa3ygp8eXQ==}
+  '@tabler/icons@3.52.0':
+    resolution: {integrity: sha512-dldKlJNfO/gZnGLcIY0X2EFFKIMGwL/rEvTqglvBgAPFiwj9pZOCN5V3Sf0Gyjq6foX4VQmLdOmsS4w5FdWKAw==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -1811,7 +1811,7 @@ snapshots:
     dependencies:
       escape-string-regexp: 5.0.0
 
-  '@tabler/icons@3.48.0': {}
+  '@tabler/icons@3.52.0': {}
 
   '@types/chai@5.2.3':
     dependencies:
